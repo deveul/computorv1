@@ -16,17 +16,3 @@ else:
     print_reduced_form(eq.reduced_elements)
     print_degree(eq.reduced_elements)
     solve(eq.reduced_elements)
-
-# a = float(input("Entrez a :\n"))
-# b = float(input("Entrez b :\n"))
-# c = float(input("Entrez c :\n"))
-# 
-# delta = calculate_delta(a, b, c)
-# 
-# print("Discriminant de l'équation :", delta)
-# 
-# solutions = []
-# 
-# solutions = calculate_solutions(a, b, delta)
-# 
-# print_solutions(solutions, delta)
