@@ -15,7 +15,7 @@ class Parse:
         self.right = self.get_right()
         self.left_list = self.get_left_list()
         self.right_list = self.get_right_list()
-        self.reduced_elements = self.get_reduced_elements()
+        self.reduced_elements = []
 
     def get_left(self):
         left = self.equation.split('=')[0]
@@ -37,12 +37,15 @@ class Parse:
         tmp_list = [w for w in re.split(r'(\-|\+)', self.right) if len(w) > 0]
         return [tmp_list[n] + tmp_list[n + 1] for n in range(0, len(tmp_list), 2)]
 
-    def get_reduced_elements(self):
-        new_list = list(zip_longest(self.left_list, self.right_list, fillvalue=0))
+    def sort_elements(self):
+        pass
+
+    def set_reduced_elements(self, left_list, right_list):
+        new_list = list(zip_longest(left_list, right_list, fillvalue=0))
         new_list = [self.reducing(x) for x in new_list]
         while (len(new_list) > 1 and new_list[-1] == 0):
             new_list.pop(-1)
-        return new_list
+        self.reduced_elements = new_list
 
     def reducing(self, element):
         if element[0] != 0:
@@ -56,5 +59,19 @@ class Parse:
         elem = float(left_elem) + float(right_elem) * -1
         return elem if not elem.is_integer() else int(elem)
 
+def check_list(list_eq):
+    for item in list_eq:
+        # m = re.match(r"^(\+|-)[0-9]+\*?(X|x)(\^?[0-9]+)*$", item)
+        m = re.match(r"^(\+|-)[0-9]+\*?(X|x)\^[0-9]+$", item)
+        if not m:
+            if item[0] == '+' or item[0] == '-':
+                item = item[1:]
+            print("Item {} is not of the form a * X^x".format(item))
+            exit()
+
 def parse_equation(equation):
-    return Parse(equation)
+    eq = Parse(equation)
+    check_list(eq.left_list + eq.right_list)
+    eq.sort_elements()
+    eq.set_reduced_elements(eq.left_list, eq.right_list)
+    return eq
