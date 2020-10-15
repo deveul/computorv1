@@ -41,8 +41,22 @@ class Parse:
         self.left_list = sorted(self.left_list, key=lambda elem: elem.split('^')[1])
         self.right_list = sorted(self.right_list, key=lambda elem: elem.split('^')[1])
 
+    def fill_list(self):
+        for index, item in enumerate(self.left_list):
+            power = int(item.split('^')[1])
+            if power > index:
+                self.left_list.insert(index, 0)
+        print(self.left_list)
+        for index, item in enumerate(self.right_list):
+            power = int(item.split('^')[1])
+            if power > index:
+                self.right_list.insert(index, 0)
+        print(self.right_list)
+
+
     def set_reduced_elements(self, left_list, right_list):
         new_list = list(zip_longest(left_list, right_list, fillvalue=0))
+        print(new_list)
         new_list = [self.reducing(x) for x in new_list]
         while (len(new_list) > 1 and new_list[-1] == 0):
             new_list.pop(-1)
@@ -74,5 +88,6 @@ def parse_equation(equation):
     eq = Parse(equation)
     check_list(eq.left_list + eq.right_list)
     eq.sort_elements()
+    eq.fill_list()
     eq.set_reduced_elements(eq.left_list, eq.right_list)
     return eq
