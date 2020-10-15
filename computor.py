@@ -8,11 +8,20 @@ from print_computor import print_degree
 from parse_computor import parse_equation
 from solver_computor import solve
 
+verbose = False
+display_help = False
+
 if len(sys.argv) < 2:
     print("Equation missing")
     sys.exit()
-else:
-    eq = parse_equation(sys.argv[1])
-    print_reduced_form(eq.reduced_elements)
-    print_degree(eq.reduced_elements)
-    solve(eq.reduced_elements)
+elif len(sys.argv) > 2:
+    for elem in sys.argv:
+        if elem == '-v':
+            verbose = True
+        elif elem == '-h':
+            display_help = True
+
+eq = parse_equation(sys.argv[1])
+print_reduced_form(eq.reduced_elements)
+print_degree(eq.reduced_elements)
+solve(eq.reduced_elements, verbose)

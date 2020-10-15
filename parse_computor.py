@@ -46,17 +46,14 @@ class Parse:
             power = int(item.split('^')[1])
             if power > index:
                 self.left_list.insert(index, 0)
-        print(self.left_list)
         for index, item in enumerate(self.right_list):
             power = int(item.split('^')[1])
             if power > index:
                 self.right_list.insert(index, 0)
-        print(self.right_list)
 
 
     def set_reduced_elements(self, left_list, right_list):
         new_list = list(zip_longest(left_list, right_list, fillvalue=0))
-        print(new_list)
         new_list = [self.reducing(x) for x in new_list]
         while (len(new_list) > 1 and new_list[-1] == 0):
             new_list.pop(-1)
@@ -78,7 +75,8 @@ def check_list(list_eq):
     for item in list_eq:
         # m = re.match(r"^(\+|-)[0-9]+\*?(X|x)(\^?[0-9]+)*$", item)
         m = re.match(r"^(\+|-)[0-9]+\*?(X|x)\^[0-9]+$", item)
-        if not m:
+        n = re.match(r"^(\+|-)[0-9]+\.?[0-9]+\*?(X|x)\^[0-9]+$", item)
+        if not m and not n:
             if item[0] == '+' or item[0] == '-':
                 item = item[1:]
             print("Item {} is not of the form a * X^x".format(item))
