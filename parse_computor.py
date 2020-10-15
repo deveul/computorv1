@@ -38,7 +38,8 @@ class Parse:
         return [tmp_list[n] + tmp_list[n + 1] for n in range(0, len(tmp_list), 2)]
 
     def sort_elements(self):
-        pass
+        self.left_list = sorted(self.left_list, key=lambda elem: elem.split('^')[1])
+        self.right_list = sorted(self.right_list, key=lambda elem: elem.split('^')[1])
 
     def set_reduced_elements(self, left_list, right_list):
         new_list = list(zip_longest(left_list, right_list, fillvalue=0))
