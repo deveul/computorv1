@@ -10,6 +10,7 @@ from solver_computor import solve
 
 verbose = False
 display_help = False
+natural = False
 
 if len(sys.argv) < 2:
     print("Equation missing")
@@ -20,8 +21,10 @@ elif len(sys.argv) > 2:
             verbose = True
         elif elem == '-h':
             display_help = True
+        elif elem == '-n':
+            natural = True
 
 eq = parse_equation(sys.argv[1])
-print_reduced_form(eq.reduced_elements)
+print_reduced_form(eq.reduced_elements, natural)
 print_degree(eq.reduced_elements)
 solve(eq.reduced_elements, verbose)
