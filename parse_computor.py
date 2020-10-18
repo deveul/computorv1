@@ -112,18 +112,18 @@ def transform_list(list_eq):
             pass
         elif '*' in item:
             if item.count('*') != 1:
-                print("too many '*' in the item: {}".format(item))
+                print("Too many '*' in the element: {}".format(item))
                 exit()
             parts = item.split('*')
             if parts[1] == 'X':
                 new_list[index] = item + '^1'
         elif '^' in item:
             if item.count('^') != 1:
-                print("too many '^' in the item: {}".format(item))
+                print("Too many '^' in the element: {}".format(item))
                 exit()
             char_before_pow = item[item.index('^') - 1]
             if char_before_pow != 'X':
-                print("I can't transform the item '{}' in the form 'a * X^x'".format(item))
+                print("I can't transform the element '{}' in the form 'a * X^x'".format(item))
                 exit()
             before_pow = item.split('{}^'.format(char_before_pow))[0]
             if len(before_pow) == 1:
@@ -137,7 +137,7 @@ def transform_list(list_eq):
                     float(item)
                     new_list[index] = item + '*X^0'
                 except ValueError:
-                    print("Not a float")
+                    print("The element {} doesn't seem to be correct.".format(item))
                     exit()
             else:
                 if re.match(r"^(\+|-)[0-9]+X", item):
@@ -154,7 +154,7 @@ def check_list(list_eq):
         if not m and not n:
             if item[0] == '+' or item[0] == '-':
                 item = item[1:]
-            print("Item {} is not of the form a * X^n".format(item))
+            print("Element {} is not of the form a * X^n".format(item))
             exit()
 
 def parse_equation(equation):

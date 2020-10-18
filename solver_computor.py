@@ -24,6 +24,7 @@ def solve_degree_2(coef, verbose):
     
     print_solutions_degree_2(solutions, delta)
 
+#revoir !!!
 def solve_degree_1(coef, verbose):
     solution = -coef[0] / coef[1]
     solution = round_float(solution)
