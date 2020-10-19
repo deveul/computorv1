@@ -4,7 +4,7 @@
 from math_computor import calculate_delta
 from math_computor import calculate_solutions_degree_2
 from math_computor import round_float
-from print_computor import print_solutions_degree_2
+from print_computor import print_solutions_degree_2, print_degree1_verbose
 
 class bcolors:
     HEADER = '\033[95m'
@@ -24,15 +24,11 @@ def solve_degree_2(coef, verbose):
     
     print_solutions_degree_2(solutions, delta)
 
-#revoir !!!
 def solve_degree_1(coef, verbose):
     solution = -coef[0] / coef[1]
     solution = round_float(solution)
     if verbose:
-        print(bcolors.HEADER + "Solving degree 1 :" + bcolors.ENDC)
-        print("\tsolution = -a /b")
-        print("\tsolution = -{a} / {b}".format(a=coef[0], b=coef[1]))
-        print("\tsolution = {solution}".format(solution=solution))
+        print_degree1_verbose(coef, solution)
     print("The solution is:\n{}".format(solution))
 
 def solve_degree_0(coef):
