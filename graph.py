@@ -13,10 +13,11 @@ def degree_2_graph(a, b, c):
     axes.set_ylim([min(small_results) - 0.5, max(small_results) + 0.5])
     plt.axhline(0, color='grey')
     plt.axvline(0, color='grey')
-    plt.plot(np.array(np.arange(-10.0, 10.0, 0.1)), results, 'r-')
+    plt.plot(np.array(np.arange(-10.0, 10.0, 0.1)), results, 'r-', label="y = {}x² + ({}x) + ({})".format(a,b,c))
+    plt.legend(loc="upper left")
     plt.xlabel('x')
     plt.ylabel('y')
-    plt.title('Polynomial Curve of y = {}x² + {}x + {}'.format(a,b,c))
+    plt.title('Polynomial Curve')
     
     plt.show()
 
@@ -30,10 +31,11 @@ def degree_1_graph(a, b):
     axes.set_ylim([min(small_results) - 0.5, max(small_results) + 0.5])
     plt.axhline(0, color='grey')
     plt.axvline(0, color='grey')
-    plt.plot(np.array(np.arange(-10.0, 10.0, 0.1)), results, 'r-')
+    plt.plot(np.array(np.arange(-10.0, 10.0, 0.1)), results, 'r-', label="y = {}x + {}".format(a,b))
+    plt.legend(loc="upper left")
     plt.xlabel('x')
     plt.ylabel('y')
-    plt.title('Polynomial Curve of y = {}x + {}'.format(a,b))
+    plt.title('Polynomial Curve')
     
     plt.show()
 
