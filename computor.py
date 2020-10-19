@@ -16,7 +16,7 @@ graph = False
 
 if len(sys.argv) < 2:
     print("Equation missing")
-    sys.exit()
+    display_help = True
 elif len(sys.argv) > 2:
     for elem in sys.argv:
         if elem == '-v':
