@@ -143,10 +143,10 @@ def transform_list(list_eq):
                     float(item)
                     new_list[index] = item + '*X^0'
                 except ValueError:
-                    print("The element {} doesn't seem to be correct.".format(item))
+                    print("The element {} doesn't seem to be a float.".format(item))
                     exit()
             else:
-                if re.match(r"^(\+|-)[0-9]+X", item):
+                if re.match(r"^(\+|-)[0-9]+(?:\.[0-9]+)?X", item):
                     new_list[index] = item[:item.index('X')] + '*' + item[item.index('X'):] + '^1'
                 if re.match(r"^(\+|-)X", item):
                     new_list[index] = item[0] + '1*' + item[item.index('X'):] + '^1'
