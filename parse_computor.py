@@ -36,10 +36,16 @@ class Parse:
         return right
 
     def get_left_list(self):
+        if re.search(r"(\+|-)(\+|-)", self.left):
+            print("Two (+|-) signs found next to each other: error.")
+            exit()
         tmp_list = [w for w in re.split(r'(\-|\+)', self.left) if len(w) > 0]
         return [tmp_list[n] + tmp_list[n + 1] for n in range(0, len(tmp_list), 2)]
         
     def get_right_list(self):
+        if re.search(r"(\+|-)(\+|-)", self.right):
+            print("Two (+|-) signs found next to each other: error.")
+            exit()
         tmp_list = [w for w in re.split(r'(\-|\+)', self.right) if len(w) > 0]
         return [tmp_list[n] + tmp_list[n + 1] for n in range(0, len(tmp_list), 2)]
 
